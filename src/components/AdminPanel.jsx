@@ -3,16 +3,58 @@ import { useLocation } from 'react-router-dom';
 import { PromptContext } from '../context/PromptContext';
 
 const initialPrompts = [
-    { id: 1, title: 'Cyberpunk Cityscape', price: '$5', imageUrl: 'https://placekitten.com/300/200', tags: ['Art', 'Cityscape', 'Futuristic'], platform: 'MidJourney', category: 'Art' },
-    { id: 2, title: 'Product Landing Page Copy', price: '$3', imageUrl: 'https://placekitten.com/301/201', tags: ['Business', 'Marketing', 'Writing'], platform: 'ChatGPT', category: 'Business' },
-    { id: 3, title: 'Fantasy Character Design', price: '$7', imageUrl: 'https://placekitten.com/302/202', tags: ['Art', 'Fantasy', 'Character'], platform: 'Stable Diffusion', category: 'Art' },
-    { id: 4, title: 'Python Code Snippet for Web Scraping', price: '$4', imageUrl: 'https://placekitten.com/303/203', tags: ['Coding', 'Python', 'Web Dev'], platform: 'ChatGPT', category: 'Coding' },
-    { id: 5, title: 'Abstract Neon Art', price: '$6', imageUrl: 'https://placekitten.com/304/204', tags: ['Art', 'Abstract', 'Neon'], platform: 'DALL·E', category: 'Art' },
-    { id: 6, title: 'Startup Business Plan Outline', price: '$8', imageUrl: 'https://placekitten.com/305/205', tags: ['Business', 'Startup', 'Planning'], platform: 'ChatGPT', category: 'Business' },
+    {
+        id: 1,
+        title: 'Cyberpunk Cityscape',
+        price: '$5',
+        imageUrl: 'https://placekitten.com/300/200', // Placeholder image
+        tags: ['Art', 'Cityscape', 'Futuristic'],
+        platform: 'MidJourney',
+    },
+    {
+        id: 2,
+        title: 'Product Landing Page Copy',
+        price: '$3',
+        imageUrl: 'https://placekitten.com/301/201', // Placeholder image
+        tags: ['Business', 'Marketing', 'Writing'],
+        platform: 'ChatGPT',
+    },
+    {
+        id: 3,
+        title: 'Fantasy Character Design',
+        price: '$7',
+        imageUrl: 'https://placekitten.com/302/202', // Placeholder image
+        tags: ['Art', 'Fantasy', 'Character'],
+        platform: 'Stable Diffusion',
+    },
+    {
+        id: 4,
+        title: 'Python Code Snippet for Web Scraping',
+        price: '$4',
+        imageUrl: 'https://placekitten.com/303/203', // Placeholder image
+        tags: ['Coding', 'Python', 'Web Dev'],
+        platform: 'ChatGPT',
+    },
+    {
+        id: 5,
+        title: 'Abstract Neon Art',
+        price: '$6',
+        imageUrl: 'https://placekitten.com/304/204', // Placeholder image
+        tags: ['Art', 'Abstract', 'Neon'],
+        platform: 'DALL·E',
+    },
+    {
+        id: 6,
+        title: 'Startup Business Plan Outline',
+        price: '$8',
+        imageUrl: 'https://placekitten.com/305/205', // Placeholder image
+        tags: ['Business', 'Startup', 'Planning'],
+        platform: 'ChatGPT',
+    },
 ];
 
 const platformOptions = ['ChatGPT', 'MidJourney', 'DALL·E', 'Stable Diffusion'];
-const categoryOptions = ['Art', 'Business', 'Writing', 'Coding', 'Marketing', 'Education', 'Other'];
+const categoryOptions = ['Art', 'Business', 'Writing', 'Coding'];
 
 
 function AdminPanel() {
@@ -23,12 +65,13 @@ function AdminPanel() {
         title: '',
         price: '',
         imageUrl: '',
-        platform: platformOptions[0],
-        category: categoryOptions[0],
+        platform: platformOptions[0], // Default to first platform option
+        category: categoryOptions[0], // Default to first category option
         tags: [],
     });
     const location = useLocation();
     const { prompts, addPrompt, updatePrompt, deletePrompt } = useContext(PromptContext);
+
 
     const handleEdit = (promptId) => {
         setEditingPromptId(promptId);
@@ -67,8 +110,8 @@ function AdminPanel() {
             title: '',
             price: '',
             imageUrl: '',
-            platform: platformOptions[0],
-            category: categoryOptions[0],
+            platform: platformOptions[0], // Reset to default platform
+            category: categoryOptions[0], // Reset to default category
             tags: [],
         });
         setIsAddingPrompt(false);
@@ -104,17 +147,17 @@ function AdminPanel() {
                     <div className="mb-2">
                         <label htmlFor="new-platform" className="block text-sm font-medium text-white mb-1">Platform</label>
                         <select id="new-platform" name="platform" value={newPrompt.platform} onChange={handleInputChange} className="w-full bg-dark-bg text-white rounded-md px-4 py-2 focus:outline-none border border-light-border">
-                            {platformOptions.map(platform => (
-                                <option key={platform} value={platform}>{platform}</option>
-                            ))}
+                          {platformOptions.map(platform => (
+                            <option key={platform} value={platform}>{platform}</option>
+                          ))}
                         </select>
                     </div>
                     <div className="mb-2">
                         <label htmlFor="new-category" className="block text-sm font-medium text-white mb-1">Category</label>
                         <select id="new-category" name="category" value={newPrompt.category} onChange={handleInputChange} className="w-full bg-dark-bg text-white rounded-md px-4 py-2 focus:outline-none border border-light-border">
-                            {categoryOptions.map(category => (
-                                <option key={category} value={category}>{category}</option>
-                            ))}
+                          {categoryOptions.map(category => (
+                            <option key={category} value={category}>{category}</option>
+                          ))}
                         </select>
                     </div>
                     <div className="mb-2">
